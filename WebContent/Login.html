@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<link rel="stylesheet" type="text/css" href="Login.css" />
+<title>Login</title>
+</head>
+<body>
+	<form id="login_form" action="Main.html" method="get">
+		<div id="login_panel">
+			<div id="login_input_panel">
+				<div id="client_id_label">Client ID:</div>
+				<div>
+					<input id="account" type="text">
+				</div>
+				<div id="pin_label">PIN:</div>
+				<div>
+					<input id="pin" type="password">
+				</div>
+			</div>
+			<div id="button_panel">
+				<div id="login_button_panel">
+					<input id="login" value="Login" type="button">
+				</div>
+				<div id="reset_button_panel">
+					<input value="Reset" id="Reset" type="reset">
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<script language="javascript" src="Helper.js"></script>
+	<script language="javascript" src="Session.js"></script>
+	<script language="javascript" src="Database.js"></script>
+	<script language="javascript" src="Customer.js"></script>
+	<script language="javascript" src="Login.js"></script>
+</body>
+</html>

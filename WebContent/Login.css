@@ -1,0 +1,51 @@
+@CHARSET "ISO-8859-1";
+
+.label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+div {
+	padding: 10px;
+}
+
+#login_panel {
+	border: solid thin;
+	width: 450px;
+	height: 200px;
+	margin: auto;
+	top: 0;bottom: 0;left: 0; right: 0;
+	position: absolute;
+}
+
+#login_input_panel {
+	padding: 15px;
+}
+
+#client_id_label {
+	float: left;
+	width: 150px;
+	text-align: right;
+}
+
+#pin_label {
+	float: left;
+	width: 150px;
+	text-align: right;
+}
+
+#button_panel {
+	border: solid thin;
+	margin: 0px auto;
+	width: 250px;
+}
+
+#login_button_panel {
+	float: left;
+	text-align: right;
+	width: 100px;
+}
+
+#reset_button_panel {
+	text-align: left;
+}
