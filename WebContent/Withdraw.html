@@ -9,8 +9,9 @@
 	<div id="main_panel">
 		<div id="customer_information_panel">
 			<div id="welcome_message"></div>
-			<div id="checking_balance"></div>
-			<div id="savings_balance"></div>
+			<div id="checking_balance"></div><div class="date"></div>
+			<div id="savings_balance"></div><div class="date"></div>
+			<div id="credit_card"></div><div class="date"></div><div id="ccDate"></div>
 		</div>
 		<div id="actions_panel">
 			<div>
@@ -24,24 +25,34 @@
 							<option>Choose an account...</option>
 						</select>
 					</div>
+					
+					<div class="col1">Fast Withdraw:</div>
+					<div class="col2"> <button id="1" value="40" disabled="true">$40</button><button id="2" value="60" disabled="true">$60</button ><button id="3" value="100" disabled="true">$100</button></div>
+					
 					<div class="col1">Withdraw amount:</div>
 					<div class="col2">
 						<input type="text" id="withdraw_amount" disabled="true" />
 					</div>
 					<div id="message"></div>
 					<div class="footer">
-						<input type="button" value="Withdraw" id="withdraw_button"
-							disabled="true" />
 					</div>
 				</form>
 			</div>
 		</div>
+		<div class="numpad">
+		<button onclick="number_write(1)">1</button><button onclick="number_write(2)">2</button><button onclick="number_write(3)">3</button>
+		<button onclick="number_write(4)">4</button><button onclick="number_write(5)">5</button><button onclick="number_write(6)">6</button><button onclick="number_write(7)">7</button>
+		<button onclick="number_write(8)">8</button><button onclick="number_write(9)">9</button><button onclick="number_write(0)">0</button>
+		<button onclick="number_c()">Clear</button>
+		<input type="button" value="Ok" id="withdraw_button" />
+		</div>
 		<div>
-			<a href="#" id="done_button"><div id="done_panel">Done</div></a>
+			<a href="#" id="done_button"><div id="done_panel"><h2 class="done">Done</h2></div></a>
 		</div>
 
 
 	</div>
+	<script language="javascript" src="numpad.js" type="text/javascript"></script>
 	<script language="javascript" src="Helper.js" type="text/javascript"></script>
 	<script language="javascript" src="Session.js" type="text/javascript"></script>
 	<script language="javascript" src="Database.js" type="text/javascript"></script>

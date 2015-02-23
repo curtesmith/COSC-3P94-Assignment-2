@@ -10,6 +10,7 @@ function Customer(db) {
 	this.created = null;
 	this.givenName = null;
 	this.savingsBalance = null;
+	this.creditCard = null;
 	this.surname = null;
 
 	Customer.prototype.getByClientId = getByClientId;
@@ -31,6 +32,7 @@ function Customer(db) {
 		this.created = data["created"];
 		this.givenName = data["givenName"];
 		this.savingsBalance = data["savingsBalance"];
+		this.creditCard = data["creditCard"];
 		this.surname = data["surname"];
 	}
 	

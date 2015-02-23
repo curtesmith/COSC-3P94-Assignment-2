@@ -6,6 +6,8 @@
 	box-sizing: border-box;
 }
 
+h2{color:blue}
+
 div {
 	padding: 0px;
 }
@@ -30,8 +32,16 @@ div {
 	padding: 15px;
 }
 
+#checking_balance{float:left; padding-right: 136px; margin-top:5px;}
+#savings_balance{float:left; padding-right: 134px; margin-top:5px;}
+#credit_card{float:left; padding-right: 90px; margin-top:5px;}
+.date{line-height:25px;}
+#ccDate{float:right; margin-top: -22px;}
+
+
 #welcome_message {
 	font-size: 18pt;
+	padding-bottom: 10px;
 }
 
 #actions_panel {
@@ -48,7 +58,7 @@ div {
 	float: left;
 	width: 33%;
 	height: 225px;
-	background: url("withdraw.jpg") no-repeat center;
+	background: url("images/withdraw-icon.jpg") no-repeat center;
 	text-align: center;
 }
 
@@ -56,7 +66,7 @@ div {
 	float: left;
 	width: 33%;
 	height: 225px;
-	background: url("deposit.jpg") no-repeat center;
+	background: url("images/deposit-icon.jpg") no-repeat center;
 	text-align: center;
 }
 
@@ -64,16 +74,19 @@ div {
 	float: left;
 	width: 33%;
 	height: 225px;
-	background: url("transfer.jpg") no-repeat center;
+	background: url("images/transfer-icon.jpg") no-repeat center;
 	text-align: center;
 }
 
 #done_panel {
 	height: 225px;
 	text-align: center;
-	background: url("done.jpg") no-repeat center;
+	background: url("images/done-icon.jpg") no-repeat;
 	text-decoration: none;
+	width:300px;
+	float:left;
 }
+.done{padding-top:20px; margin-left:-20px;}
 
 #done_button {
 	text-decoration: none;

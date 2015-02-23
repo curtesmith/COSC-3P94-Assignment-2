@@ -34,6 +34,7 @@ function Database() {
 			custData.checkingBalance = customer.checkingBalance;
 			custData.givenName = customer.givenName;
 			custData.savingsBalance = customer.savingsBalance;
+			custData.creditCard = customer.creditCard;
 			custData.surname = customer.surname;
 
 			var putRequest = store.put(custData, custData.clientId);
@@ -135,6 +136,7 @@ function Database() {
 			givenName : "Steph",
 			checkingBalance : "4999.00",
 			savingsBalance : "132.00",
+			creditCard : "200.00",
 			created : new Date()
 		}
 
