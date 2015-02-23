@@ -19,11 +19,34 @@
 	border: solid thin blue;
 	padding: 15px;
 }
-#checking_balance{float:left; padding-right: 136px; margin-top:5px;}
-#savings_balance{float:left; padding-right: 134px; margin-top:5px;}
-#credit_card{float:left; padding-right: 90px; margin-top:5px;}
-.date{line-height:25px;}
-#ccDate{float:right; margin-top: -22px;}
+
+#checking_balance {
+	float: left;
+	padding-right: 136px;
+	margin-top: 5px;
+}
+
+#savings_balance {
+	float: left;
+	padding-right: 134px;
+	margin-top: 5px;
+}
+
+#credit_card {
+	float: left;
+	padding-right: 90px;
+	margin-top: 5px;
+}
+
+.date {
+	line-height: 25px;
+}
+
+#ccDate {
+	float: right;
+	margin-top: -22px;
+}
+
 #welcome_message {
 	font-size: 18pt;
 	padding-bottom: 10px;
@@ -33,24 +56,36 @@
 	padding: 10px;
 }
 
-#actions_panel:AFTER {
-	content: "";
-	display: table;
-	clear: both;
-}
+/* #actions_panel:AFTER { */
+/* 	content: ""; */
+/* 	display: table; */
+/* 	clear: both; */
+/* } */
 
 div.col1 {
 	float: left;
-	width: 25%;
 	text-align: right;
-	padding: 15px 5px 15px 5px;
+	width: 45%;
 }
 
 div.col2 {
-	padding: 15px 5px 15px 5px;
+	float: left;
 }
 
-#message {
+div.gridrow {
+	height: 25px;
+	padding: 5px;
+	margin: 10px;
+}
+
+div.row {
+	height: 30px;
+	margin: 20px;
+	padding: 0px;
+	text-align: center;
+}
+
+div.message {
 	color: red;
 	text-align: center;
 }
@@ -62,28 +97,51 @@ div.footer {
 
 #withdraw_panel {
 	float: left;
-	width: 33%;
+	width: 30%;
 	height: 225px;
 	background: url("withdraw.jpg") no-repeat center;
 	text-align: center;
+	margin: 5px;
 }
 
 #withdraw_contol_panel {
-	
+	float: left;
+	width: 65%;
+	height: 300px;
+	border: solid thin silver;
+	margin: 5px;
+	padding: 5px;
 }
-button{height:45px;width:7%; margin: 3px;}
-input{height:45px;font-size:16px;}
-input[type=text]{padding-left:10px;}
+
+button {
+	height: 45px;
+	margin: 0px 10px 0px 15px;
+	padding: 10px;
+}
+
+input {
+	font-size: 16px;
+	padding: 10px;
+}
+
+input[type=text] {
+	padding-left: 10px;
+}
+
 #done_panel {
 	height: 130px;
 	text-align: center;
 	background: url("images/done-icon.jpg") no-repeat;
 	text-decoration: none;
-	margin-top:10px;
-	width:300px;
-	float:left;
+	margin-top: 10px;
+	width: 300px;
+	float: left;
 }
-.done{padding-top:20px; margin-left:-20px;}
+
+.done {
+	padding-top: 20px;
+	margin-left: -20px;
+}
 
 #done_button {
 	text-decoration: none;

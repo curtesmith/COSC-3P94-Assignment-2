@@ -8,55 +8,62 @@ document.addEventListener("DOMContentLoaded", setup, false);
 function setup() {
 	db.connectWithCallback(window, updatePage);
 	g("done_button").onclick = done;
-	g("withdraw_button").onclick = withdraw;
-	g("withdraw_account_select").onchange = accountSelected;
+	g("withdraw_button").onclick = withdrawClick;
 	g("withdraw_amount").onkeyup = amountChanged;
+	g("1").onclick = fastWithdrawClick;
+	g("2").onclick = fastWithdrawClick;
+	g("3").onclick = fastWithdrawClick;
+
+	var radios = document.getElementsByName("withdraw_account_radio");
+	for (var i = 0; i < radios.length; i++) {
+		radios[i].onchange = radioAccountSelected;
+	}
+
+	window.onkeydown = keyPressed;
 }
 
 function updatePage(e) {
 	var session = new Session(db);
 	session.get(function(e) {
-		customer = new Customer(db);
-		customer.fill(e.target.result.value);
-		g("welcome_message").innerHTML = "Welcome " + customer.givenName + ".";
-		g("checking_balance").innerHTML = "Checking balance: $"
-				+ customer.checkingBalance;
-		g("savings_balance").innerHTML = "Savings balance: $"
-				+ customer.savingsBalance;
+				customer = new Customer(db);
+				customer.fill(e.target.result.value);
+				g("welcome_message").innerHTML = "Welcome "
+						+ customer.givenName + ".";
+				g("checking_balance").innerHTML = "Checking balance: $"
+						+ customer.checkingBalance;
+				g("savings_balance").innerHTML = "Savings balance: $"
+						+ customer.savingsBalance;
 				var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-	var cc = today.getMonth()+2;
+				var dd = today.getDate();
+				var mm = today.getMonth() + 1; // January is 0!
+				var yyyy = today.getFullYear();
+				var cc = today.getMonth() + 2;
 
-	if(dd<10) {
-		dd='0'+dd
-	} 
+				if (dd < 10) {
+					dd = '0' + dd
+				}
 
-	if(mm<10) {
-		mm='0'+mm
-	} 
-	today = mm+'/'+dd+'/'+yyyy;
-	credit = cc+'/'+dd+'/'+yyyy;
-	var dates = document.querySelectorAll("div.date");
+				if (mm < 10) {
+					mm = '0' + mm
+				}
+				today = mm + '/' + dd + '/' + yyyy;
+				credit = cc + '/' + dd + '/' + yyyy;
+				var dates = document.querySelectorAll("div.date");
 
-for (i=0; i < dates.length; i++) {
-dates[i].innerHTML = "As of: " + today;
-}
-g("credit_card").innerHTML = "Credit Card balance: $" + customer.creditCard;
-g("ccDate").innerHTML = "Next payment date: " + credit;
-		g("withdraw_account_select").innerHTML = "<option>Choose an account...</option>";
+				for (i = 0; i < dates.length; i++) {
+					dates[i].innerHTML = "As of: " + today;
+				}
+				g("credit_card").innerHTML = "Credit Card balance: $"
+						+ customer.creditCard;
+				g("ccDate").innerHTML = "Next payment date: " + credit;
+				
+				g("savings_label").innerHTML = "Savings $" + customer.savingsBalance;
+				g("checking_label").innerHTML = "Checking $" + customer.checkingBalance;
+				updateFastWithdrawButtons(customer.savingsBalance);
 
-		g("withdraw_account_select").add(
-				createWithdrawBalanceOption("Checking balance",
-						customer.checkingBalance));
-		g("withdraw_account_select").add(
-				createWithdrawBalanceOption("Savings balance",
-						customer.savingsBalance));
-
-		g("withdraw_amount").value = "";
-		g("withdraw_amount").disabled = true;		
-	});
+				g("withdraw_amount").value = "";
+				g("withdraw_amount").disabled = true;
+			});
 }
 
 function createWithdrawBalanceOption(name, balance) {
@@ -66,43 +73,20 @@ function createWithdrawBalanceOption(name, balance) {
 	return o;
 }
 
-function accountSelected(e) {
-var selectedIndex = g("withdraw_account_select").selectedIndex;
-if (selectedIndex == 1) {
-			balance = customer.checkingBalance;
-		} else {
-			balance = customer.savingsBalance;
-		}
-
-var fast1 = document.getElementById("1").value;
-var fast2 = document.getElementById("2").value;
-var fast3 = document.getElementById("3").value;
-
-	if (e.target.selectedIndex > 0) {
-		g("withdraw_amount").focus();
-		
-		if(balance < fast1){
-			g("1").disabled = true;
-		}
-		else if(balance < fast2){
-			g("1").disabled = false;
-			g("2").disabled = true;
-		}
-		else if(balance < fast3){
-			g("1").disabled = false;
-			g("2").disabled = false;
-			g("3").disabled = true;
-		}
-		else if(balance > fast3){
-		g("1").disabled = false;
-		g("2").disabled = false;
-		g("3").disabled = false;
-		}
-	} 
-	else {
-		g("withdraw_amount").disabled = true;
-		g("withdraw_button").disabled = true;
+function radioAccountSelected(e) {
+	if (e.target.value == "Checking") {
+		balance = customer.checkingBalance;
+	} else {
+		balance = customer.savingsBalance;
 	}
+	
+	updateFastWithdrawButtons(balance);
+}
+
+function updateFastWithdrawButtons(balance) {
+	g("1").disabled = parseFloat(balance) < parseFloat(g("1").value);
+	g("2").disabled = parseFloat(balance) < parseFloat(g("2").value);
+	g("3").disabled = parseFloat(balance) < parseFloat(g("3").value);	
 }
 
 function amountChanged(e) {
@@ -111,49 +95,82 @@ function amountChanged(e) {
 	if (isNaN(amount) || amount <= 0) {
 		g("withdraw_button").disabled = true;
 		g("message").innerHTML = "Enter an amount that is greater than zero";
-	} else {
-		var selectedIndex = g("withdraw_account_select").selectedIndex;
-		var balance = 0;
-
-		if (selectedIndex == 1) {
-			balance = customer.checkingBalance;
-		} else {
-			balance = customer.savingsBalance;
-		}
-
-		if (amount > balance) {
-			g("withdraw_button").disabled = true;
-			g("message").innerHTML = "Enter an amount that is less than or equal to the account balance, $"
-					+ balance;
-		} else {
-			g("message").innerHTML = "";
-			g("withdraw_button").disabled = false;
-		}
+		return;
 	}
+
+	var selectedIndex = g("withdraw_account_select").selectedIndex;
+	var balance = 0;
+
+	if (selectedIndex == 1) {
+		balance = customer.checkingBalance;
+	} else {
+		balance = customer.savingsBalance;
+	}
+
+	if (amount > balance) {
+		g("withdraw_button").disabled = true;
+		g("message").innerHTML = "Enter an amount that is less than or equal to the account balance, $"
+				+ balance;
+		return;
+	}
+
+	g("message").innerHTML = "";
+	g("withdraw_button").disabled = false;
 }
 
 function done() {
 	location.replace("Main.html");
 }
 
-function withdraw(e) {
-	var selectedIndex = g("withdraw_account_select").selectedIndex;
-	var amount = parseFloat(g("withdraw_amount").value);
+function keyPressed(e) {
+	if (e.keyCode >= 48 && e.keyCode <= 57) {
+		number_write(e.keyCode % 48);
+	} else if (e.keyCode == 8) {
+		e.preventDefault();
+		number_c();
+	} else if (e.keyCode == 13) {
+		e.preventDefault();
+		withdrawClick(e);
+	}
+}
 
-	if (selectedIndex == 1) {
+function fastWithdrawClick(e) {
+	withdraw(parseFloat(e.target.value));
+}
+
+
+function withdrawClick(e) {
+	withdraw(parseFloat(g("withdraw_amount").value));
+}
+
+function withdraw(amount) {
+	var selected = getSelectedAccount();
+
+	if (selected == "Checking") {
 		customer.checkingBalance = parseFloat(customer.checkingBalance)
-				- parseFloat(g("withdraw_amount").value);
+				- amount;
 		alert("Withdraw from checking account was successful.\nNew balance is $"
 				+ customer.checkingBalance);
-	} else if (selectedIndex == 2) {
+	} else {
 		customer.savingsBalance = parseFloat(customer.savingsBalance)
-				- parseFloat(g("withdraw_amount").value);
+				- amount;
 		alert("Withdraw from savings account was successful.\nNew balance is $"
 				+ customer.savingsBalance);
 	}
 
 	var session = new Session(db);
-
 	customer.update(session.update(customer, updatePage));
+}
 
+
+function getSelectedAccount() {
+	var radios = document.getElementsByName("withdraw_account_radio");
+	var selected = "";
+	for(var i=0; i<radios.length; i++) {
+		if(radios[i].checked) {
+			selected = radios[i].value;
+		}
+	}
+	
+	return selected;
 }
