@@ -63,7 +63,12 @@ function updatePage(e) {
 				g("checking_label").innerHTML = "Checking $"
 						+ customer.checkingBalance;
 				
-				updateFastWithdrawButtons(customer.checkingBalance);
+				var account = getSelectedAccount();
+				if(getSelectedAccount() == "Checking") {
+					updateFastWithdrawButtons(customer.checkingBalance);
+				} else {
+					updateFastWithdrawButtons(customer.savingsBalance);
+				}
 
 				g("withdraw_amount").value = "";
 				g("withdraw_amount").disabled = true;
