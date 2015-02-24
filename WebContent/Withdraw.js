@@ -84,35 +84,6 @@ function updateFastWithdrawButtons(balance) {
 	$("3").disabled = parseFloat(balance) < parseFloat($("3").value);
 }
 
-function amountChanged(e) {
-	var amount = parseFloat(e.target.value);
-
-	if (isNaN(amount) || amount <= 0) {
-		$("withdraw_button").disabled = true;
-		$("message").innerHTML = "Enter an amount that is greater than zero";
-		return;
-	}
-
-	var selectedIndex = $("withdraw_account_select").selectedIndex;
-	var balance = 0;
-
-	if (selectedIndex == 1) {
-		balance = customer.checkingBalance;
-	} else {
-		balance = customer.savingsBalance;
-	}
-
-	if (amount > balance) {
-		$("withdraw_button").disabled = true;
-		$("message").innerHTML = "Enter an amount that is less than or equal to the account balance, $"
-				+ balance;
-		return;
-	}
-
-	$("message").innerHTML = "";
-	$("withdraw_button").disabled = false;
-}
-
 function done() {
 	location.replace("Main.html");
 }
