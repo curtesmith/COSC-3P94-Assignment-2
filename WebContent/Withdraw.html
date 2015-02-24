@@ -20,40 +20,46 @@
 		<div id="actions_panel">
 			<div id="withdraw_panel">Withdraw</div>
 			<div id="withdraw_contol_panel">
-					<div class="row">Choose the account you wish to withdraw
-						from:</div>
+				<div class="row">
+					Step 1. Choose the account you wish to withdraw from:
+				</div>
 
-					<div class="gridrow">
-						<div class="col1">
-							<input type="radio" id="withdraw_account_radio"
-								name="withdraw_account_radio" value="Checking" checked />
-						</div>
-						<div class="col2" id="checking_label">Checking</div>
+				<div class="gridrow">
+					<div class="col1">
+						<input type="radio" id="withdraw_account_radio"
+							name="withdraw_account_radio" value="Checking" checked />
 					</div>
-					<div class="gridrow">
-						<div class="col1">
-							<input type="radio" id="withdraw_account_radio"
-								name="withdraw_account_radio" value="Savings" />
-						</div>
-						<div class="col2" id="savings_label">Savings</div>
+					<div class="col2" id="checking_label">Checking</div>
+				</div>
+				<div class="gridrow">
+					<div class="col1">
+						<input type="radio" id="withdraw_account_radio"
+							name="withdraw_account_radio" value="Savings" />
 					</div>
+					<div class="col2" id="savings_label">Savings</div>
+				</div>
+				<div class="row">
+					Step 2. Tap a Fast Withdraw button OR enter the amount
+						using the number keys below or by typing the number on your
+						keyboard.
+				</div>
 
-					<div class="row">
-						<div class="col1">Fast Withdraw:</div>
-						<div class="col2">
-							<button id="1" value="40" disabled>$40</button>
-							<button id="2" value="60" disabled>$60</button>
-							<button id="3" value="100" disabled>$100</button>
-						</div>
+				<div class="row">
+					<div class="col1">Fast Withdraw:</div>
+					<div class="col2">
+						<button id="1" value="40" disabled>$40</button>
+						<button id="2" value="60" disabled>$60</button>
+						<button id="3" value="100" disabled>$100</button>
 					</div>
-					<div class="row">
-						<div class="col1">Withdraw amount:</div>
-						<div class="col2">
-							<input type="text" id="withdraw_amount" disabled="true" />
-						</div>
+				</div>
+				<div class="row">
+					<div class="col1">Withdraw amount:</div>
+					<div class="col2">
+						<input type="text" id="withdraw_amount" disabled="true" />
 					</div>
-					<div class="message" id="message"></div>
-					<div class="footer"></div>
+				</div>
+				<div class="message" id="message"></div>
+				<div class="footer"></div>
 			</div>
 		</div>
 		<div class="numpad">

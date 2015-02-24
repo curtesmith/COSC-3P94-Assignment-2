@@ -74,15 +74,17 @@ div.col2 {
 
 div.gridrow {
 	height: 25px;
-	padding: 5px;
-	margin: 10px;
+	padding: 0px;
+	margin: 1px 10px 10px 10px;
+	background-color: ;
 }
 
 div.row {
 	height: 30px;
-	margin: 20px;
+	margin: 0px 20px 20px 20px;
 	padding: 0px;
 	text-align: center;
+	background-color: ;
 }
 
 div.message {

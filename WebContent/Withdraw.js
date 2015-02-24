@@ -24,7 +24,8 @@ function setup() {
 
 function updatePage(e) {
 	var session = new Session(db);
-	session.get(function(e) {
+	session
+			.get(function(e) {
 				customer = new Customer(db);
 				customer.fill(e.target.result.value);
 				g("welcome_message").innerHTML = "Welcome "
@@ -56,9 +57,11 @@ function updatePage(e) {
 				g("credit_card").innerHTML = "Credit Card balance: $"
 						+ customer.creditCard;
 				g("ccDate").innerHTML = "Next payment date: " + credit;
-				
-				g("savings_label").innerHTML = "Savings $" + customer.savingsBalance;
-				g("checking_label").innerHTML = "Checking $" + customer.checkingBalance;
+
+				g("savings_label").innerHTML = "Savings $"
+						+ customer.savingsBalance;
+				g("checking_label").innerHTML = "Checking $"
+						+ customer.checkingBalance;
 				updateFastWithdrawButtons(customer.savingsBalance);
 
 				g("withdraw_amount").value = "";
@@ -79,14 +82,14 @@ function radioAccountSelected(e) {
 	} else {
 		balance = customer.savingsBalance;
 	}
-	
+
 	updateFastWithdrawButtons(balance);
 }
 
 function updateFastWithdrawButtons(balance) {
 	g("1").disabled = parseFloat(balance) < parseFloat(g("1").value);
 	g("2").disabled = parseFloat(balance) < parseFloat(g("2").value);
-	g("3").disabled = parseFloat(balance) < parseFloat(g("3").value);	
+	g("3").disabled = parseFloat(balance) < parseFloat(g("3").value);
 }
 
 function amountChanged(e) {
@@ -138,7 +141,6 @@ function fastWithdrawClick(e) {
 	withdraw(parseFloat(e.target.value));
 }
 
-
 function withdrawClick(e) {
 	withdraw(parseFloat(g("withdraw_amount").value));
 }
@@ -152,8 +154,7 @@ function withdraw(amount) {
 		alert("Withdraw from checking account was successful.\nNew balance is $"
 				+ customer.checkingBalance);
 	} else {
-		customer.savingsBalance = parseFloat(customer.savingsBalance)
-				- amount;
+		customer.savingsBalance = parseFloat(customer.savingsBalance) - amount;
 		alert("Withdraw from savings account was successful.\nNew balance is $"
 				+ customer.savingsBalance);
 	}
@@ -162,15 +163,14 @@ function withdraw(amount) {
 	customer.update(session.update(customer, updatePage));
 }
 
-
 function getSelectedAccount() {
 	var radios = document.getElementsByName("withdraw_account_radio");
 	var selected = "";
-	for(var i=0; i<radios.length; i++) {
-		if(radios[i].checked) {
+	for (var i = 0; i < radios.length; i++) {
+		if (radios[i].checked) {
 			selected = radios[i].value;
 		}
 	}
-	
+
 	return selected;
 }
