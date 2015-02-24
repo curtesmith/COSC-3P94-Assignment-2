@@ -1,0 +1,150 @@
+@CHARSET "ISO-8859-1";
+
+#main_panel {
+	width: 800px;
+	height: 600px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
+#customer_information_panel {
+	border: solid thin blue;
+	padding: 15px;
+}
+
+#checking_balance {
+	float: left;
+	padding-right: 136px;
+	margin-top: 5px;
+}
+
+#savings_balance {
+	float: left;
+	padding-right: 134px;
+	margin-top: 5px;
+}
+
+#credit_card {
+	float: left;
+	padding-right: 90px;
+	margin-top: 5px;
+}
+
+.date {
+	line-height: 25px;
+}
+
+#ccDate {
+	float: right;
+	margin-top: -22px;
+}
+
+#welcome_message {
+	font-size: 18pt;
+	padding-bottom: 10px;
+}
+
+#actions_panel {
+	padding: 10px;
+}
+
+/* #actions_panel:AFTER { */
+/* 	content: ""; */
+/* 	display: table; */
+/* 	clear: both; */
+/* } */
+
+div.col1 {
+	float: left;
+	text-align: right;
+	width: 45%;
+}
+
+div.col2 {
+	float: left;
+}
+
+div.gridrow {
+	height: 25px;
+	padding: 0px;
+	margin: 1px 10px 10px 10px;
+	background-color: ;
+}
+
+div.row {
+	height: 30px;
+	margin: 0px 20px 20px 20px;
+	padding: 0px;
+	text-align: center;
+	background-color: ;
+}
+
+div.message {
+	color: red;
+	text-align: center;
+}
+
+div.footer {
+	padding: 15px 10px 15px 10px;
+	text-align: center;
+}
+
+#withdraw_panel {
+	float: left;
+	width: 30%;
+	height: 225px;
+	background: url("transfer.jpg") no-repeat center;
+	text-align: center;
+	margin: 5px;
+}
+
+#withdraw_contol_panel {
+	float: left;
+	width: 65%;
+	height: 300px;
+	border: solid thin silver;
+	margin: 5px;
+	padding: 5px;
+}
+
+button {
+	height: 45px;
+	margin: 0px 10px 0px 15px;
+	padding: 10px;
+}
+
+input {
+	font-size: 16px;
+	padding: 10px;
+}
+
+input[type=text] {
+	padding-left: 10px;
+}
+
+#done_panel {
+	height: 130px;
+	text-align: center;
+	background: url("images/done-icon.jpg") no-repeat;
+	text-decoration: none;
+	margin-top: 10px;
+	width: 300px;
+	float: left;
+}
+
+.done {
+	padding-top: 20px;
+	margin-left: -20px;
+}
+
+#done_button {
+	text-decoration: none;
+}

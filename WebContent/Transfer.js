@@ -152,11 +152,13 @@ function withdraw(amount) {
 	if (selected == "Checking") {
 		customer.checkingBalance = parseFloat(customer.checkingBalance)
 				- amount;
-		alert("Withdraw from checking account was successful.\nNew balance is $"
+		customer.savingsBalance = parseFloat(customer.savingsBalance) + amount;
+		alert("Transfer from checking account was successful.\nNew balance is $"
 				+ customer.checkingBalance);
 	} else {
 		customer.savingsBalance = parseFloat(customer.savingsBalance) - amount;
-		alert("Withdraw from savings account was successful.\nNew balance is $"
+		customer.checkingBalance = parseFloat(customer.checkingBalance) + amount;
+		alert("Transfer from savings account was successful.\nNew balance is $"
 				+ customer.savingsBalance);
 	}
 
