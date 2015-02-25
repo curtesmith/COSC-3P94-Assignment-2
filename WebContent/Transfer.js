@@ -61,16 +61,24 @@ function updatePage(e) {
 				$("credit_card").innerHTML = "Credit Card balance: $"
 						+ customer.creditCard;
 				$("ccDate").innerHTML = "Next payment date: " + credit;
-
-				$("savings_label").innerHTML = "Savings $"
+				//Select account to transfer from
+				$("savings_label").innerHTML = "Savings: $"
 						+ customer.savingsBalance;
-				$("checking_label").innerHTML = "Checking $"
+				$("checking_label").innerHTML = "Checking: $"
 						+ customer.checkingBalance;
+				
+				//Get account to transfer money too	
+				$("savings_too").innerHTML = "Savings: $"
+						+ customer.savingsBalance;
+				$("checking_too").innerHTML = "Checking: $"
+						+ customer.checkingBalance;
+				$("credit_too").innerHTML = "Credit: $"
+						+ customer.creditCard;
 
 				updateFastWithdrawButtons(getSelectedBalance());
 
-				$("transfer_amount").value = "";
-				$("transfer_amount").disabled = true;
+				$("withdraw_amount").value = "";
+				$("withdraw_amount").disabled = true;
 			});
 }
 
@@ -104,22 +112,22 @@ function keyPressed(e) {
 }
 
 function handleClear() {
-	var num = $("transfer_amount").value;
+	var num = $("withdraw_amount").value;
 	var num1 = num % 10;
 	num -= num1;
 	num /= 10;
-	$("transfer_amount").value = num;
+	$("withdraw_amount").value = num;
 }
 
 function handleNumber(key) {
-	var value = parseFloat($("transfer_amount").value);
+	var value = parseFloat($("withdraw_amount").value);
 	if (isNaN(value))
 		value = 0;
 
 	var newValue = (value * 10) + key;
 
 	if (newValue <= getSelectedBalance()) {
-		$("transfer_amount").value = newValue;
+		$("withdraw_amount").value = newValue;
 	} else {
 		$("message").innerHTML = "You cannot transfer more than $"
 				+ getSelectedBalance() + " from " + getSelectedAccount();
@@ -129,7 +137,7 @@ function handleNumber(key) {
 function getSelectedBalance() {
 	if (getSelectedAccount() == "Checking") {
 		return customer.checkingBalance;
-	} else {
+	}else {
 		return customer.savingsBalance;
 	}
 }
@@ -141,24 +149,44 @@ function fastWithdrawClick(e) {
 
 function withdrawClick(e) {
 	resetMessage();
-	withdraw(parseFloat(g("transfer_amount").value));
+	withdraw(parseFloat(g("withdraw_amount").value));
 }
 
 function withdraw(amount) {
 	var selected = getSelectedAccount();
-
-	if (selected == "Checking") {
-		customer.checkingBalance = parseFloat(customer.checkingBalance)
-				- amount;
+	var transferToo = getSelectedAccountToo();
+	
+	if (selected == "Checking" && transferToo == "Savings2") {
+		
+		customer.checkingBalance = parseFloat(customer.checkingBalance)	- amount;
 		customer.savingsBalance = parseFloat(customer.savingsBalance) + amount;
-		alert("Transfer from checking account was successful.\nNew balance is $"
-				+ customer.checkingBalance);
-	} else {
-		customer.savingsBalance = parseFloat(customer.savingsBalance) - amount;
-		customer.checkingBalance = parseFloat(customer.checkingBalance)
-				+ amount;
-		alert("Transfer from savings account was successful.\nNew balance is $"
+		alert("Transfer from checking account to savings was successful.\nNew savings balance is $"
 				+ customer.savingsBalance);
+		}
+	else if (selected == "Checking" && transferToo == "Credit2")	{
+	
+		customer.checkingBalance = parseFloat(customer.checkingBalance)	- amount;
+		customer.creditCard = parseFloat(customer.creditCard) + amount;
+		alert("Transfer from checking account to credit was successful.\nNew credit balance is $"
+				+ customer.creditCard);
+	
+				
+	} else if(selected == "Savings" && transferToo == "Checking2"){
+		
+		customer.savingsBalance = parseFloat(customer.savingsBalance) - amount;
+		customer.checkingBalance = parseFloat(customer.checkingBalance)	+ amount;
+		alert("Transfer from savings account to checking was successful.\nNew checking balance is $"
+				+ customer.checkingBalance);
+	}
+	else if(selected == "Savings" && transferToo == "Credit2"){
+	
+		customer.savingsBalance = parseFloat(customer.savingsBalance) - amount;
+		customer.creditCard = parseFloat(customer.creditCard) + amount;
+		alert("Transfer from savings account to credit was successful.\nNew credit balance is $"
+				+ customer.creditCard);
+	}
+	else{
+		alert("Please select another account to transfer too");		
 	}
 
 	var session = new Session(db);
@@ -175,4 +203,15 @@ function getSelectedAccount() {
 	}
 
 	return selected;
+}
+function getSelectedAccountToo() {
+	var radios = $name("transfer_too");
+	var transferToo = "";
+	for (var i = 0; i < radios.length; i++) {
+		if (radios[i].checked) {
+			transferToo = radios[i].value;
+		}
+	}
+
+	return transferToo;
 }

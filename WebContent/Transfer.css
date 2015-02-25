@@ -109,7 +109,7 @@ div.footer {
 #withdraw_contol_panel {
 	float: left;
 	width: 65%;
-	height: 300px;
+	/*height: 300px;*/
 	border: solid thin silver;
 	margin: 5px;
 	padding: 5px;
@@ -117,7 +117,7 @@ div.footer {
 
 button {
 	height: 45px;
-	margin: 0px 10px 0px 15px;
+	margin: 0px 10px 0px 10px;
 	padding: 10px;
 }
 
