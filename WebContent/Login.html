@@ -7,11 +7,17 @@
 </head>
 <body>
 	<form id="login_form" action="Main.html" method="get">
+
 		<div id="login_panel">
+			<div>
+			<p>Thank you for choosing the First Bank of KJC (Kyle-Justin-Curtis).</p>
+				<p>Please enter your account credentials in the form below then tap the <strong>Login</strong> button.</p>
+			</div>
 			<div id="login_input_panel">
-				<div id="client_id_label">Client ID:</div>
+
+				<div id="client_id_label">Account Number:</div>
 				<div>
-					<input id="account" type="text">
+					<input id="account_number" type="text">
 				</div>
 				<div id="pin_label">PIN:</div>
 				<div>
@@ -22,13 +28,10 @@
 				<div id="login_button_panel">
 					<input id="login" value="Login" type="button">
 				</div>
-				<div id="reset_button_panel">
-					<input value="Reset" id="Reset" type="reset">
-				</div>
 			</div>
 		</div>
 	</form>
-	
+
 	<script language="javascript" src="Helper.js"></script>
 	<script language="javascript" src="Session.js"></script>
 	<script language="javascript" src="Database.js"></script>

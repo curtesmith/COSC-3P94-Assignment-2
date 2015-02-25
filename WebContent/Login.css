@@ -10,7 +10,6 @@ div {
 }
 
 #login_panel {
-	border: solid thin;
 	width: 450px;
 	height: 200px;
 	margin: auto;
@@ -20,6 +19,7 @@ div {
 
 #login_input_panel {
 	padding: 15px;
+	border: solid thin silver;
 }
 
 #client_id_label {
@@ -35,17 +35,20 @@ div {
 }
 
 #button_panel {
-	border: solid thin;
 	margin: 0px auto;
 	width: 250px;
+	height: 50px;
+	text-align: center;
 }
 
 #login_button_panel {
-	float: left;
-	text-align: right;
-	width: 100px;
 }
 
-#reset_button_panel {
-	text-align: left;
+input[type=button] {
+	padding: 10px 30px 10px 30px;
+	background-color: lightgreen;
+}
+
+.error {
+	background-color: yellow;
 }
