@@ -89,7 +89,7 @@ function Database() {
 		if (!indexedDBOk(window))
 			return;
 
-		req = indexedDB.open("cosc.3P94.assignment2", 2);
+		req = indexedDB.open("cosc.3P94.assignment2", 1);
 		req.onupgradeneeded = onupgradeneeded;
 		req.onsuccess = onsuccess;
 		req.onerror = onerror;
@@ -129,9 +129,9 @@ function Database() {
 
 	function initialize(os) {
 		// Define a person
-		var person = {
+		var steph = {
 			clientId : "3322",
-			PIN : "3322",
+			PIN : "4321",
 			surname : "McKay",
 			givenName : "Steph",
 			checkingBalance : "4999.00",
@@ -140,8 +140,20 @@ function Database() {
 			created : new Date()
 		}
 
+		var adam = {
+			clientId : "9988",
+			PIN : "4523",
+			surname : "Benner",
+			givenName : "Adam",
+			checkingBalance : "69.00",
+			savingsBalance : "58008.00",
+			creditCard : "2995.00",
+			created : new Date()
+		}
+
 		// Perform the add
-		var request = os.add(person, person.clientId);
+		var request = os.add(steph, steph.clientId);
+		request = os.add(adam, adam.clientId);
 
 		request.onerror = function(e) {
 			console.log("Error", e.target.error.name);
