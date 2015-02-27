@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+		<head>
+			<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+			<title>Deposit</title>
+			<link rel="stylesheet" type="text/css" href="deposit.css" />
+		</head>
+		<body>
+			<div id="main_panel" />
+				<div id="customer_information_panel">
+					<div id="welcome_message"></div>
+					<div id="checking_balance"></div>
+					<div class="date"></div>
+					<div id="savings_balance"></div>
+					<div class="date"></div>
+					<div id="credit_card"></div>
+					<div class="date"></div>
+					<div id="ccDate"></div>
+				</div>
+
+				<div id="actions_panel">
+					<div id="deposit_panel">Deposit</div>
+					<div id="deposit_contol_panel">
+						
+						<div id = "instruction">
+							Select the account you wish to deposit into
+						</div>
+						<div class="gridrow">
+							<div class="col1">
+								<input type="radio" id="deposit_account_radio"
+								name="deposit_account_radio" value="Checking" checked />
+							</div>
+							<div class="col2" id="checking_label">Checking</div>
+						</div>
+						<div class="gridrow">
+							<div class="col1">
+								<input type="radio" id="deposit_account_radio"
+								name="deposit_account_radio" value="Savings" />
+							</div>
+							<div class="col2" id="savings_label">Savings</div>
+						</div>
+
+						
+						<div id = "instruction">
+							Enter the amounts you will be depositing
+						</div>
+						<div id="deposit_inputs">
+							<div id="row">
+								<input type="text" id="deposit_amount1" disabled="true" />
+								<button onclick="deposit_select(1)">Select</button>
+							</div>
+							<div id="row">
+								<input type="text" id="deposit_amount2" disabled="true" />
+								<button onclick="deposit_select(2)">Select</button>
+							</div>
+							<div id="row">
+								<input type="text" id="deposit_amount3" disabled="true" />
+								<button onclick="deposit_select(3)">Select</button>
+							</div>
+							<div id="row">
+								<input type="text" id="deposit_amount4" disabled="true" />
+								<button onclick="deposit_select(4)">Select</button>
+							</div>
+						</div>
+						<div id="end_instructions">
+							Once you have finished entering your deposit amounts, put your cash/cheques into a single
+							envelope and insert them into the deposit slot.
+						</div>
+
+						<div class="message" id="message"></div>
+
+					</div>
+				</div>
+				<div class="numpad">
+				<button onclick="number_write(1)">1</button>
+				<button onclick="number_write(2)">2</button>
+				<button onclick="number_write(3)">3</button>
+				<button onclick="number_write(4)">4</button>
+				<button onclick="number_write(5)">5</button>
+				<button onclick="number_write(6)">6</button>
+				<button onclick="number_write(7)">7</button>
+				<button onclick="number_write(8)">8</button>
+				<button onclick="number_write(9)">9</button>
+				<button onclick="number_write(0)">0</button>
+				<button onclick="number_c()">Clear</button>
+				<input type="button" value="Ok" id="deposit_button" />
+				</div>
+				<div>
+					<a href="#" id="done_button">
+						<div id="done_panel">
+							<h2 class="done">Done</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+			<script language="javascript" src="Helper.js" type="text/javascript"></script>
+			<script language="javascript" src="Session.js" type="text/javascript"></script>
+			<script language="javascript" src="Database.js" type="text/javascript"></script>
+			<script language="javascript" src="Customer.js" type="text/javascript"></script>
+			<script language="javascript" src="deposit.js" type="text/javascript"></script>
+		</body>
+</html>
